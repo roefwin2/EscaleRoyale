@@ -14,9 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
@@ -36,7 +34,6 @@ import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.ShapeDefaults
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 val JetStreamBorderWidth = 3.dp
 
@@ -44,9 +41,10 @@ val JetStreamBorderWidth = 3.dp
 @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 @Composable
 fun VideoPlayerScreen(
-    mediaUri: Uri = Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
+    videoPath: String,
     modifier: Modifier = Modifier
 ) {
+    val mediaUri: Uri = Uri.parse(videoPath)
     val context = LocalContext.current
     val carouselHeight = LocalConfiguration.current.screenHeightDp.dp.times(0.50f)
     var contentCurrentPosition: Long by remember { mutableStateOf(0L) }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -29,9 +28,12 @@ import com.example.escaleroyaletv.ui.theme.EscaleRoyaleTVTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Set the video path from the "res/raw" directory
+        val videoPath = "android.resource://" + packageName + "/" + R.raw.escale_royale_video
+
         setContent {
             EscaleRoyaleTVTheme {
-                EscaleRoyaleScreen()
+                EscaleRoyaleScreen(videoPath)
             }
         }
     }
@@ -39,8 +41,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-fun EscaleRoyaleScreen(modifier: Modifier = Modifier) {
-
+fun EscaleRoyaleScreen(videoPath: String, modifier: Modifier = Modifier) {
     var isProgrammFidReveal by remember {
         mutableStateOf(false)
     }
@@ -50,7 +51,9 @@ fun EscaleRoyaleScreen(modifier: Modifier = Modifier) {
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        VideoPlayerScreen()
+
+
+        VideoPlayerScreen(videoPath = videoPath)
         EscaleRoyaleAppSBar(
             apps = listOf(
                 EscaleRoyaleApp(
@@ -86,6 +89,6 @@ fun EscaleRoyaleScreen(modifier: Modifier = Modifier) {
 @Composable
 fun EscaleRoyaleScreenPreview() {
     EscaleRoyaleTVTheme {
-        EscaleRoyaleScreen()
+        EscaleRoyaleScreen("")
     }
 }
