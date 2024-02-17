@@ -4,9 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,11 +21,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.ExperimentalTvMaterial3Api
-import androidx.tv.material3.OutlinedButton
-import androidx.tv.material3.Text
+import androidx.tv.material3.OutlinedButtonDefaults
 import com.example.escaleroyaletv.presenter.EscaleRoyaleAppSBar
 import com.example.escaleroyaletv.presenter.VideoPlayerScreen
 import com.example.escaleroyaletv.presenter.components.HotelFidelityProgram
@@ -33,7 +40,10 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             EscaleRoyaleTVTheme {
-                EscaleRoyaleScreen(videoPath)
+                EscaleRoyaleScreen(
+                    videoPath,
+                    modifier = Modifier.background(color = androidx.compose.material3.MaterialTheme.colorScheme.secondaryContainer)
+                )
             }
         }
     }
@@ -49,36 +59,52 @@ fun EscaleRoyaleScreen(videoPath: String, modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxSize()
             .padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
-
         VideoPlayerScreen(videoPath = videoPath)
         EscaleRoyaleAppSBar(
             apps = listOf(
                 EscaleRoyaleApp(
                     R.drawable.icon_netflix,
-                    "http://www.netflix.com/watch"
+                    "http://www.netflix.com/home"
                 ),
                 EscaleRoyaleApp(
                     R.drawable.tiktok_new_version_bis,
-                    "http://www.youtube.com/watch?v=xxxx"
+                    "https://play.google.com/store/apps/details?id=com.tiktok.tv&pcampaignid=web_share"
                 ),
                 EscaleRoyaleApp(
                     R.drawable.instagram_logo_transparent_background,
-                    "http://instagram.com"
+                    "https://play.google.com/store/apps/details?id=com.instagram.android&pcampaignid=web_share"
                 ),
-            )
+            ),
+            modifier = Modifier.background(MaterialTheme.colorScheme.primaryContainer)
         )
         AnimatedVisibility(visible = !isProgrammFidReveal) {
-            OutlinedButton(onClick = {
-                isProgrammFidReveal = true
-            }) {
-                Text(text = "Découvrir le Programme Fidélité")
+            OutlinedButton(
+                onClick = {
+                    isProgrammFidReveal = true
+                },
+                colors = ButtonColors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                    disabledContainerColor = Color.LightGray,
+                    disabledContentColor = Color.LightGray
+                )
+            ) {
+                Text(
+                    text = "Découvrir le Programme Fidélité"
+                )
             }
         }
         AnimatedVisibility(visible = isProgrammFidReveal) {
-            HotelFidelityProgram() {
+            HotelFidelityProgram(
+                modifier = Modifier
+                    .background(
+                        MaterialTheme.colorScheme.secondaryContainer,
+                        RoundedCornerShape(16.dp)
+                    )
+                    .border(2.dp, Color.Black, shape = RoundedCornerShape(16.dp))
+            ) {
                 isProgrammFidReveal = false
             }
         }

@@ -20,9 +20,6 @@ fun AppItem(escaleRoyaleApp: EscaleRoyaleApp, modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
     Image(painter = painterResource(id = escaleRoyaleApp.iconId), modifier = modifier
-        .background(
-            Color.Transparent, RoundedCornerShape(8)
-        )
         .clickable {
             val intent = Intent()
             intent.action = Intent.ACTION_VIEW
