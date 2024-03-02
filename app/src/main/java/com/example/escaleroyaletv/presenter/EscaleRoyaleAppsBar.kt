@@ -28,9 +28,6 @@ fun EscaleRoyaleAppSBar(apps: List<EscaleRoyaleApp>, modifier: Modifier = Modifi
             AppItem(
                 escaleRoyaleApp = app, modifier = Modifier
                     .size(80.dp)
-                    .background(
-                        MaterialTheme.colorScheme.primaryContainer, RoundedCornerShape(8)
-                    )
             )
         }
     }

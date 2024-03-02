@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -35,9 +36,6 @@ import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.ShapeDefaults
 import kotlinx.coroutines.delay
 
-val JetStreamBorderWidth = 3.dp
-
-@OptIn(ExperimentalTvMaterial3Api::class)
 @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 @Composable
 fun VideoPlayerScreen(
@@ -46,7 +44,6 @@ fun VideoPlayerScreen(
 ) {
     val mediaUri: Uri = Uri.parse(videoPath)
     val context = LocalContext.current
-    val carouselHeight = LocalConfiguration.current.screenHeightDp.dp.times(0.50f)
     var contentCurrentPosition: Long by remember { mutableStateOf(0L) }
 
     val exoPlayer = remember {
@@ -82,15 +79,7 @@ fun VideoPlayerScreen(
 
     Box(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(20.dp)
-            .height(carouselHeight)
-            .border(
-                width = JetStreamBorderWidth,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 1f),
-                shape = ShapeDefaults.Medium,
-            )
-            .clip(ShapeDefaults.Medium)
+            .fillMaxSize()
     ) {
         DisposableEffect(
             AndroidView(
