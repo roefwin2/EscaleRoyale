@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.escaleroyaletv.presenter.components.AppItem
@@ -27,6 +28,7 @@ fun EscaleRoyaleAppSBar(apps: List<EscaleRoyaleApp>, modifier: Modifier = Modifi
         items(apps) { app ->
             AppItem(
                 escaleRoyaleApp = app, modifier = Modifier
+                    .alpha(0.5f)
                     .size(80.dp)
             )
         }

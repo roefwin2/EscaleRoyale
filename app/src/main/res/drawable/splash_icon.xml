@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle"
+            android:width="150dp"
+            android:height="150dp">
+            <solid android:color="@android:color/transparent"/>
+            <corners android:radius="50dp"/>
+        </shape>
+    </item>
+    <item
+        android:width="200dp"
+        android:height="200dp"
+        android:gravity="center"
+        android:background="@drawable/round_background"
+        android:drawable="@drawable/splash_inset" />
+</layer-list>

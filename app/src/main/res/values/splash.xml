@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#BD8421</item>
 
-        <item name="windowSplashScreenAnimatedIcon">@drawable/escale_royale_logo</item>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenIconBackgroundColor">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
 
         <item name="postSplashScreenTheme">@style/Theme.SplashScreen.IconBackground</item>
+    </style>
+
+    <style name="Theme.SplashScreen.IconBackground" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Assurez-vous que ce thème a également un fond blanc si nécessaire -->
+        <item name="splashScreenIconSize">300dp</item>
     </style>
 </resources>
